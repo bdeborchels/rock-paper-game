@@ -1,35 +1,27 @@
-
-// const guessSubmit = document.querySelector('.guessSubmit');
-// guessSubmit.addEventListener('click', playRound);
-
 const computerSelection = getComputerChoice();
-const playerSelection = getPlayerSelection();
-
-game();
+const buttons = document.querySelectorAll(`button`);
+buttons.forEach(button => {
+  button.addEventListener('click', () => {
+    var playerSelection = button.id;
+    playRound(playerSelection, computerSelection);
+  });
+});
+//game();
  
 function getComputerChoice() {
     const computerSelection = ["rock", "paper", "scissors"];
-
     const randomNumber = Math.floor(Math.random() * computerSelection.length);
-    
+  
     return computerSelection[randomNumber];
-
 }
 
 function getPlayerSelection(){
-
-    // const playerSelection = document.querySelector('.guessField');
-
-    const playerSelection = prompt("Enter your option:");
-
     return playerSelection;
-
 }
 
 function playRound(playerSelection, computerSelection) {
     let winner = 0;
-    computerSelection = getComputerChoice();
-    playerSelection = getPlayerSelection();   
+    computerSelection = getComputerChoice();  
     console.log("Let's the round begin!");
     console.log("Computer: "+computerSelection+ "   You: "+playerSelection);
 
@@ -47,10 +39,10 @@ function playRound(playerSelection, computerSelection) {
             winner = 2;
         }
     else console.log("It's a draw!");
+        return winner;
+     }
 
-         return winner;
-    
-    }
+    /*
     function game(){
         let playerWins = 0;
         let computerWins = 0;
@@ -70,3 +62,4 @@ function playRound(playerSelection, computerSelection) {
             console.log("COMPUTER WINS!! Sorry :(");
          }
     }
+    */
