@@ -1,12 +1,27 @@
 const computerSelection = getComputerChoice();
-const buttons = document.querySelectorAll(`button`);
-buttons.forEach(button => {
-  button.addEventListener('click', () => {
-    var playerSelection = button.id;
-    playRound(playerSelection, computerSelection);
+
+const buttons = document.querySelectorAll('button');
+
+buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+      alert(button.id);
+      playRound(button.id,computerSelection)
+    });
   });
-});
-//game();
+
+
+//CREATE DIV INSIDE CONTAINER
+
+const container = document.querySelector('#container');
+
+const content = document.createElement('div');
+content.classList.add('content');
+
+
+container.appendChild(content);
+
+
+//FUNCTIONS
  
 function getComputerChoice() {
     const computerSelection = ["rock", "paper", "scissors"];
@@ -15,7 +30,7 @@ function getComputerChoice() {
     return computerSelection[randomNumber];
 }
 
-function getPlayerSelection(){
+function getPlayerSelection(playerSelection){
     return playerSelection;
 }
 
@@ -42,10 +57,10 @@ function playRound(playerSelection, computerSelection) {
         return winner;
      }
 
-    /*
-    function game(){
+    /*function game(){
         let playerWins = 0;
         let computerWins = 0;
+        
         for (let i = 0; i < 5; i++) {
             playRound(playerSelection,computerSelection);
             if(playRound===1){
@@ -61,5 +76,4 @@ function playRound(playerSelection, computerSelection) {
          if(computerWins === 3){
             console.log("COMPUTER WINS!! Sorry :(");
          }
-    }
-    */
+    }*/
