@@ -1,79 +1,98 @@
-const computerSelection = getComputerChoice();
+        let playerWins = 0;
+        let computerWins = 0;
+        let gameOver = false;
+        let playerSelection;
+        let computer;
+        let randomNumber;
+        let options= ["rock", "paper", "scissors"];
+        let buttonPressed;
+        
 
-const buttons = document.querySelectorAll('button');
+// BUTTONS      
+        const rockButton = document.querySelector('#rock');
+        rockButton.addEventListener('click', () => {
+            buttonPressed = rockButton.id;
+            playRound();
+        });
 
-buttons.forEach((button) => {
-    button.addEventListener('click', () => {
-      alert(button.id);
-      playRound(button.id,computerSelection)
-    });
-  });
+        const paperButton = document.querySelector('#paper');
+        paperButton.addEventListener('click', () => {
+            buttonPressed = paperButton.id;
+            playRound();
+        });
 
+        const scissorsButton = document.querySelector('#scissors');
+        scissorsButton.addEventListener('click', () => {
+            buttonPressed = scissorsButton.id;
+            playRound();
+        });
 
-//CREATE DIV INSIDE CONTAINER
-
-const container = document.querySelector('#container');
-
-const content = document.createElement('div');
-content.classList.add('content');
-
-
-container.appendChild(content);
-
+        let results = document.querySelector('#results');
+        results.setAttribute('style', 'white-space: pre;');
 
 //FUNCTIONS
  
 function getComputerChoice() {
-    const computerSelection = ["rock", "paper", "scissors"];
-    const randomNumber = Math.floor(Math.random() * computerSelection.length);
+    randomNumber = Math.floor(Math.random() * options.length);
   
-    return computerSelection[randomNumber];
-}
-
-function getPlayerSelection(playerSelection){
-    return playerSelection;
+    computer = options[randomNumber];
 }
 
 function playRound(playerSelection, computerSelection) {
-    let winner = 0;
-    computerSelection = getComputerChoice();  
-    console.log("Let's the round begin!");
-    console.log("Computer: "+computerSelection+ "   You: "+playerSelection);
+    if (gameOver == true) return;
+    getComputerChoice();
+    computerSelection = computer;
+    playerSelection = buttonPressed;
 
-    if(
-        (playerSelection === "rock" && computerSelection === "paper")||(playerSelection === "paper" && computerSelection === "scissors")||
-        (playerSelection === "scissors" && computerSelection === "rock")
-        ){
-            console.log("COMPUTER wins this round");
-            winner = 1;
-    }
-    else if((playerSelection === "rock" && computerSelection === "scissors")||(playerSelection === "scissors" && computerSelection === "paper") ||
-        (playerSelection === "paper" && computerSelection === "rock")){
 
-            console.log("YOU win this round!");
-            winner = 2;
-        }
-    else console.log("It's a draw!");
-        return winner;
-     }
-
-    /*function game(){
-        let playerWins = 0;
-        let computerWins = 0;
-        
-        for (let i = 0; i < 5; i++) {
-            playRound(playerSelection,computerSelection);
-            if(playRound===1){
-            computerWins++;
+    if (computerSelection === playerSelection){
+                results.textContent = `It's a tie!\r\n\r\nPlayer: ${playerWins}\r\nComputer: ${computerWins}`;
+            } else if (computerSelection === 'rock' && playerSelection === 'paper') {
+                ++playerWins;
+                results.textContent = `You picked Paper. Computer picked Rock.\r\nPaper beats Rock! You win!\r\n\r\nPlayer: ${playerWins}\r\nComputer: ${computerWins}`;
+            } else if (computerSelection === 'rock' && playerSelection === 'scissors') {
+                ++computerWins;
+                results.textContent = `You picked Scissors. Computer picked Rock.\r\nRock beats Scissors! You lose!\r\n\r\nPlayer: ${playerWins}\r\nComputer: ${computerWins}`;
+            } else if (computerSelection === 'paper' && playerSelection === 'rock') {
+                ++computerWins;
+                results.textContent = `You picked Rock. Computer picked Paper.\r\nPaper beats Rock! You lose!\r\n\r\nPlayer: ${playerWins}\r\nComputer: ${computerWins}`;
+            } else if (computerSelection === 'paper' && playerSelection === 'scissors') {
+                ++playerWins;
+                results.textContent = `You picked Scissors. Computer picked Paper.\r\nScissors beats Paper! You win!\r\n\r\nPlayer: ${playerWins}\r\nComputer: ${computerWins}`;
+            } else if (computerSelection === 'scissors' && playerSelection === 'paper') {
+                ++computerWins;
+                results.textContent = `You picked Paper. Computer picked Scissors.\r\nScissors beats Paper! You lose!\r\n\r\nPlayer: ${playerWins}\r\nComputer: ${computerWins}`;
+            } else if (computerSelection === 'scissors' && playerSelection === 'rock') {
+                ++playerWins;  
+                results.textContent = `You picked Rock. Computer picked Scissors.\r\nRock beats Scissors! You win!\r\n\r\nPlayer: ${playerWins}\r\nComputer: ${computerWins}`;    
+            } 
+            if (playerWins == 5){
+                results.textContent = `You win the game!\r\n\r\n\r\nPlayer: ${playerWins}\r\nComputer: ${computerWins}`;    
+                gameOver = true;
+                titleButton.classList.add('hidden');
+                setTimeout(showButtons, 1000);
             }
-            if(playRound===2){
-                playerWins++;
-                }
+            if (computerWins == 5){
+                results.textContent = `You lose the game!\r\n\r\n\r\nPlayer: ${playerWins}\r\nComputer: ${computerWins}`;    
+                gameOver = true;
+                titleButton.classList.add('hidden');
+                setTimeout(showButtons, 1000);
             }
-         if(playerWins === 3){
-            console.log("YOU WIN THIS GAME!!!");
-         }
-         if(computerWins === 3){
-            console.log("COMPUTER WINS!! Sorry :(");
-         }
-    }*/
+}
+
+        const paButton = document.querySelector('#play-again');
+        const titleButton = document.querySelector('#title');
+
+        paButton.addEventListener('click', () => {
+            let answer;
+                playerWins = 0;
+                computerWins = 0;
+                results.textContent = '';
+                gameOver = false;
+                paButton.classList.add('hidden');
+                titleButton.classList.remove('hidden');
+        });
+
+        function showButtons() {
+            paButton.classList.remove('hidden');
+        };

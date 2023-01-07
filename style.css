@@ -1,49 +1,85 @@
 body {
-    font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 25px;
 }
 
 button {
-    background-color: white;
-}
-.second-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 0 13em;
-    margin-top: 20px;
+    width: 200px;
+    height: 200px;
+    border-radius: 20px;
+    background-color: black;
+    border-color: black;
+    margin-bottom: 30px;
 }
 
-.second-container h2 {
-    font-size: 36px;
-    font-weight: 900;
-    color: #1f2937;
-    padding-bottom: 1em;
+#container {
+    display: flex;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    gap: 35px;
 }
 
-.card-container {
-    display: flex;
-    justify-content: center;
-    gap: 50px;
-    padding-bottom: 40px;
-  }
+div {
+    flex: auto;
+    text-align: center;
+}
 
-.card-container .info {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    max-width: 200px;
-    align-items: center;
-  }
-  
-  .card-container .text{
-    padding-top: 10px;
-  text-align: center;
-  }
+#rock {
+    background-image: url(images/rock.svg)
+}
 
-  .card-container img {
-    width: 100px;
-    height: 100px;
-    padding: 20px;
-    border-radius: 20%;
-    border: 4px solid #3882F6;
-  }
+#paper {
+    background-image: url(images/paper.svg)
+}
+
+#scissors {
+    background-image: url(images/scissors.svg)
+}
+
+div {
+    color: black;
+}
+
+#title {
+    font-size: 50px;
+    margin-bottom: 50px;
+    margin-top: 100px;
+}
+
+#play-again {
+    margin-top: 50px;
+    border-radius: 5px;
+    font-size: 50px;
+    height: auto;
+    width: auto;
+    background-color: black;
+    color: white;
+    padding: 5px 20px;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+#rock:hover,
+#paper:hover,
+#scissors:hover { 
+    transform: scale(1.05);
+}
+
+#rock:active,
+#paper:active,
+#scissors:active {
+    transform: translateY(10px);
+}
+
+#play-again:hover {
+    color: white;
+    border-color: white;
+}
+
+#play-again:active {
+    transform: scale(1.1);
+}
